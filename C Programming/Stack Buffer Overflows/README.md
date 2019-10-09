@@ -94,7 +94,7 @@ Let's look at the variables on the stack in the authenticated() function.
 | 0x0  | buf  | buf  | buf  | buf  |
 | 0x4  | buf  | auth | sfp  | ret  |
 
-<br><br>
+<br>
 
 ### Before input:
 |      |0x0000|0x0004|0x0008|0x000C|
@@ -117,12 +117,14 @@ that keeps track of where the stack is) makes room for 'auth' by moving itself b
 itself back 20 bytes to make room for 'buf'.
 
 <br>
+
 Looking back at the program, the `strcpy(buf, password);` line
 does not check that what we are putting into the 'buf' variable is at most 20 bytes. Because of this,
 we are able to give the program more than it can store in 'buf', and because the next thing over is 
 the 'auth' variable, it flows into that.
 
 <br>
+
 You'll notice that the input in the 'after' chart also overrode what was previously labeled 'sfp'. 
 This is called the saved frame pointer, and it keeps track of where the current stack frame 
 is so that the program knows where to work. After the sfp is the return address (ret) which tells the 
@@ -130,10 +132,11 @@ function where to go when it exits. In this case, the return addres points
 to the main function, so when the function exits it will return to main().
 
 <br>
-<br>
+
 So why did overflowing the 'buf' array give us authorization?
 
 <br>
+
 When the buffer flowed into the auth variable, it replaced what auth was (0x0) with the
 buffer(0x41414141)(Note: it is \x41 because this is hex for 'A').
 
@@ -143,9 +146,8 @@ is non-zero. 0x41414141 is non-zero, and we make the 'if' statement true!
 
 <br>
 <br>
-<br>
 
-### Overwriting the Return Address
+## Overwriting the Return Address
 
 You might have noticed earlier that when the buffer was too long, we got a 
 segmentation fault.
