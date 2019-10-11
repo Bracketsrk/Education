@@ -110,7 +110,9 @@ Let's look at the variables on the stack in the **authenticated()** function.
 | 0x4  | AAAA | AAAA | A??? | ret  |
 
 <br>
-In the before chart, you can see that the **buf** character array takes up 20 bytes, and the
+
+In the before chart, you can see that the **buf** 
+character array takes up 20 bytes, and the
 **auth** integer takes 4 bytes. The reason that they appear in this order in the stack is because
 they are loaded onto the stack in reverse order. When the function is called, the stack pointer (the pointer
 that keeps track of where the stack is) makes room for **auth** by moving itself back 4 bytes, then moves
