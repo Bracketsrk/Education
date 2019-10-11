@@ -172,5 +172,7 @@ and so the program doesn't know where to go after the function finishes.
 | 0x0  | AAAA | AAAA | AAAA | AAAA |
 | 0x4  | AAAA | AAAA | AAAA | AA?? |
 
+<br>
+
 If the function tried to jump to this return address, it would be jumping to 0x????4141. If we can 
-control where the program goes after the function ends, then we could make the program do things it wasn't meant to.
+control where the program goes after the function ends, then we could make the program jump to functions or run shellcode, allowing code execution.
