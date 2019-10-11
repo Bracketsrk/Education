@@ -14,11 +14,6 @@ int authenticated(char *password) {
 	return auth;	
 }
 
-void jumpMe() {
-    printf("You did it!\n");
-    exit(20);
-}
-
 int main(int argc, char **argv) {
 
 	if (argc < 2) {
